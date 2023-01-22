@@ -85,7 +85,8 @@ class Sudoku_DE:
 
         return pop
 
-    def evolve(self, pop, k, CR=.09):
+    def evolve(self, pop):
+        CR = .09
         new_gen = []
 
         for individual in pop:
@@ -111,7 +112,8 @@ class Sudoku_DE:
                     if (CR > random()):
                         trial[i][j] = mutate[i][j]
                     else:
-                        trial[i][j] = individual[i][j]
+                        target=individual[i][j]
+                        trial[i][j] = target
 
             f1 = self.fitness(trial)
             f2 = self.fitness(individual)
@@ -120,9 +122,9 @@ class Sudoku_DE:
             else:
                 new_gen.append(individual)
 
-        if ((k + 1) % 100 == 0):
 
-            new_gen = self.new_pop(new_gen)
+
+        new_gen = self.new_pop(new_gen)
 
         return new_gen
 
@@ -175,9 +177,10 @@ class Sudoku_DE:
 
                     for s in range(retain_length):
                         p1[randint(0, self.pop_num - 1)] = parents[s]
-                        pre_fitness = []
+
+                    pre_fitness = []
                 else:
                     pre_fitness.append(min)
-            p1 = self.evolve(p1, i)
+            p1 = self.evolve(p1)
 
         return fitest
