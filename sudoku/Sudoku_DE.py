@@ -1,8 +1,6 @@
-
 import numpy as np
 from random import randint
 from random import random
-
 
 class Sudoku_DE:
 
@@ -122,8 +120,6 @@ class Sudoku_DE:
             else:
                 new_gen.append(individual)
 
-
-
         new_gen = self.new_pop(new_gen)
 
         return new_gen
@@ -138,9 +134,6 @@ class Sudoku_DE:
                 else:
                     myList[row][col] = int(board[row][col])
         return np.array(myList)
-
-
-
 
     def solve_by_DE(self, board):
         self.copy = self.replace(board)
